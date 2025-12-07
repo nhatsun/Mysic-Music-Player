@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mysic - Kết quả tìm kiếm</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <body>
+    <div class="transition-overlay"></div>
+
+    <header>
+        <div class="logo">Mysic</div>
+        <nav>
+            <a href="index.html">Trang chủ</a>
+            <a href="genres.html">Thể loại</a>
+            <a href="leaderboard.html">Bảng xếp hạng</a>
+            <a href="about.html">Giới thiệu</a>
+        </nav>
+        <div class="auth-action">
+            <a href="#" class="btn-login" id="loginBtn">Đăng nhập</a>
+        </div>
+    </header>
+
+    <main class="search-page">
+        <div class="container">
+            <div class="search-header">
+                <h1 class="headline">Kết quả tìm kiếm</h1>
+                <div class="search-box small-search">
+                    <input type="text" id="searchInputPage" placeholder="Tìm bài khác...">
+                    <button id="searchBtnPage">Tìm</button>
+                </div>
+            </div>
+
+            <p id="searchResultText" style="color: #b8c1ec; margin-bottom: 20px;">Đang tìm kiếm...</p>
+
+            <div class="chart-list" id="searchResults">
+                </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mysic Project. Designed for Music Lovers.</p>
+    </footer>
+    <div class="music-player-bar" id="musicPlayerBar">
+        
+        <div class="player-info">
+            <img src="images/hero-gif.gif" alt="Cover" class="player-thumb" id="playerThumb">
+            <div class="player-text">
+                <h4 id="playerTitle">Chọn bài hát...</h4>
+                <p id="playerArtist">Mysic</p>
+            </div>
+        </div>
+
+        <div class="player-center">
+            <div class="player-controls">
+                <button class="ctrl-btn" id="prevBtn">⏮</button>
+                <button class="ctrl-btn play-main" id="mainPlayBtn">▶</button>
+                <button class="ctrl-btn" id="nextBtn">⏭</button>
+            </div>
+            
+            <div class="progress-area">
+                <span id="currentTime">0:00</span>
+                <input type="range" id="progressBar" value="0" min="0" max="100">
+                <span id="duration">0:00</span>
+            </div>
+        </div>
+
+        <div class="player-volume">
+            <span class="vol-icon">🔊</span>
+            <input type="range" id="volumeBar" value="100" min="0" max="100">
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

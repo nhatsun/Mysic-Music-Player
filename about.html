@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mysic - Giới thiệu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Mã Public Key của bạn (Dựa trên file bạn gửi)
+            emailjs.init("8n78HsCiSe0uL0B6q"); 
+        })();
+    </script>
+</head> <body>
+    <div class="transition-overlay"></div>
+
+    <header>
+        <div class="logo">Mysic</div>
+        <nav>
+            <a href="index.html">Trang chủ</a>
+            <a href="genres.html">Thể loại</a>
+            <a href="leaderboard.html">Bảng xếp hạng</a>
+            <a href="about.html" class="active">Giới thiệu</a>
+        </nav>
+        <div class="auth-action">
+            <a href="#" class="btn-login" id="loginBtn">Đăng nhập</a>
+        </div>
+    </header>
+
+    <main class="about-page">
+        <div class="container" style="text-align: center; margin-top: 50px;">
+            <h1 class="headline">Về Dự Án Mysic</h1>
+            <p style="color: #b8c1ec; max-width: 600px; margin: 0 auto 20px;">
+                Mysic là dự án website nghe nhạc trực tuyến được phát triển với niềm đam mê âm nhạc và công nghệ. 
+                Chúng tôi mong muốn mang lại trải nghiệm nghe nhạc mượt mà và cảm xúc nhất.
+            </p>
+
+            <div class="about-banner" style="margin-bottom: 40px;">
+                <img src="images/200.gif" alt="Mysic Team" 
+                     style="width: 100%; max-width: 600px; height: 300px; object-fit: cover; 
+                            border-radius: 20px; border: 3px solid #eebbc3; 
+                            box-shadow: 0 0 25px rgba(238, 187, 195, 0.3);">
+            </div>
+
+            <div class="team-grid" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                
+                <div class="member-card" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; width: 220px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">👑</div>
+                    <h3 style="color: #fffffe; font-size: 1.1rem;">Võ Hoàng Minh Nhật (L)</h3>
+                    <p style="color: #eebbc3; font-size: 0.9rem;">Trưởng nhóm / Coder</p>
+                </div>
+
+                <div class="member-card" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; width: 220px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎨</div>
+                    <h3 style="color: #fffffe; font-size: 1.1rem;">Nguyễn Hoàng Thiên Du</h3>
+                    <p style="color: #eebbc3; font-size: 0.9rem;">Designer</p>
+                </div>
+
+                <div class="member-card" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; width: 220px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">📝</div>
+                    <h3 style="color: #fffffe; font-size: 1.1rem;">Lê Đỗ Minh Khang</h3>
+                    <p style="color: #eebbc3; font-size: 0.9rem;">Content Creator</p>
+                </div>
+
+                <div class="member-card" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; width: 220px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🔍</div>
+                    <h3 style="color: #fffffe; font-size: 1.1rem;">Dương Nguyễn Khánh</h3>
+                    <p style="color: #eebbc3; font-size: 0.9rem;">Tester</p>
+                </div>
+
+                <div class="member-card" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; width: 220px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">💡</div>
+                    <h3 style="color: #fffffe; font-size: 1.1rem;">Trần Ngọc Bảo Tâm</h3>
+                    <p style="color: #eebbc3; font-size: 0.9rem;">Supporter</p>
+                </div>
+
+            </div> <div class="feedback-area" style="margin-top: 60px; padding-bottom: 50px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;">
+                <h3 style="color: #b8c1ec; margin-bottom: 15px;">Bạn có ý kiến đóng góp?</h3>
+                <button id="openFeedbackBtn" style="border: 2px solid #eebbc3; color: #eebbc3; background: transparent; padding: 12px 30px; border-radius: 30px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: 0.3s;">
+                    📩 Gửi góp ý cho chúng tôi
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mysic Project. Designed for Music Lovers.</p>
+    </footer>
+
+    <div id="myModal" class="modal"></div> 
+    <div id="registerModal" class="modal"></div>
+
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <span class="close feedback-close">&times;</span>
+            <h2>Gửi Góp Ý</h2>
+            <p>Chúng tôi luôn lắng nghe ý kiến của bạn!</p>
+            
+            <form id="feedbackForm">
+                <div class="input-group">
+                    <label>Tên của bạn</label>
+                    <input type="text" id="fbName" placeholder="Nhập tên..." required>
+                </div>
+                
+                <div class="input-group">
+                    <label>Email của bạn</label>
+                    <input type="email" id="fbEmail" placeholder="Nhập email..." required>
+                </div>
+
+                <div class="input-group">
+                    <label>Nội dung góp ý</label>
+                    <textarea id="fbContent" rows="4" placeholder="Bạn muốn nhắn nhủ điều gì..." required style="width: 100%; padding: 10px; border-radius: 5px; outline: none; border: 1px solid #b8c1ec; background: #fffffe; font-family: inherit;"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Gửi Email 🚀</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
