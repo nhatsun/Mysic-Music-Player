@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mysic - Tải nhạc</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="transition-overlay"></div>
+
+    <header>
+        <div class="logo">Mysic</div>
+        <nav>
+            <a href="index.html">Trang chủ</a>
+            <a href="genres.html">Thể loại</a>
+            <a href="leaderboard.html">Bảng xếp hạng</a>
+            <a href="download.html" class="active">Tải nhạc</a>
+            <a href="about.html">Giới thiệu</a>
+        </nav>
+        <div class="auth-action">
+            <a href="#" class="btn-login" id="loginBtn">Đăng nhập</a>
+        </div>
+    </header>
+
+
+ <main>
+        <div class="container" style="padding-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+            <h1 class="headline">Kho Nhạc Chất Lượng Cao</h1>
+            <p style="color: #b8c1ec; margin-bottom: 15px;">Tải về miễn phí các bài hát yêu thích của bạn</p>
+            
+            <div style="border: 1px dashed #eebbc3; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-bottom: 30px; background: rgba(238, 187, 195, 0.1);">
+                <p style="color: #eebbc3; margin: 0; font-size: 0.9rem; font-weight: bold;">
+                    ⚠️ Lưu ý: Các bài hát này đều có bản quyền. Vui lòng chỉ nghe cá nhân, không Re-up!
+                </p>
+            </div>
+            
+            <div class="download-grid" id="downloadGrid"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mysic Project. Designed for Music Lovers.</p>
+    </footer>
+
+    <div id="myModal" class="modal"></div> 
+    <div id="registerModal" class="modal"></div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Gọi hàm render ngay khi vào trang này
+        window.onload = function() {
+            renderDownloadPage();
+            // Tắt màn che transition
+            document.querySelector('.transition-overlay').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
