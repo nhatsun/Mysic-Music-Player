@@ -1,7 +1,8 @@
 // ==============================================
-// PHẦN 1: DỮ LIỆU & CẤU HÌNH (Đã thêm ảnh Cover)
+// PHẦN 1: DỮ LIỆU & CẤU HÌNH
 // ==============================================
 
+// --- GIỮ NGUYÊN PHẦN DỮ LIỆU CŨ CỦA BẠN (KHÔNG CHỈNH SỬA) ---
 const chartData = {
     'vn': [
         { rank: 1, title: "Chúng Ta Của Tương Lai", artist: "Sơn Tùng M-TP", time: "04:30", file: "ctctl.mp3", youtube: "https://www.youtube.com/watch?v=3v3hL07b4kI", image: "ctctl.jpg" },
@@ -26,15 +27,116 @@ const chartData = {
     ]
 };
 
-// Gộp tất cả nhạc
+// --- GỘP NHẠC CŨ VÀ THÊM NHẠC MỚI (ĐÃ CẬP NHẬT ĐẦY ĐỦ THỂ LOẠI) ---
 const allSongs = [
-    ...chartData['vn'], ...chartData['us'], ...chartData['kp'],
-    // Cập nhật ảnh cho các bài lẻ (bạn nhớ kiếm ảnh cho mấy bài này nhé)
-    { title: "Em Của Ngày Hôm Qua", artist: "Sơn Tùng M-TP", time: "03:50", file: "ecnhq.mp3", youtube: "...", image: "ecnhq.jpg" },
-    { title: "Lạc Trôi", artist: "Sơn Tùng M-TP", time: "04:00", file: "lactroi.mp3", youtube: "...", image: "lactroi.jpg" },
-    { title: "Mặt Trời Của Em", artist: "Phương Ly", time: "03:20", file: "mtce.mp3", youtube: "...", image: "mtce.jpg" },
-    { title: "Hoa Nở Không Màu", artist: "Hoài Lâm", time: "05:12", file: "hnkm.mp3", youtube: "...", image: "hnkm.jpg" }
+    // 1. Nhạc cũ từ Bảng Xếp Hạng (Giữ nguyên)
+    ...chartData['vn'], 
+    ...chartData['us'], 
+    ...chartData['kp'],
+    
+    // 2. Các bài lẻ cũ của bạn (Giữ nguyên)
+    { title: "Em Của Ngày Hôm Qua", artist: "Sơn Tùng M-TP", genre: "V-Pop", time: "03:50", file: "ecnhq.mp3", youtube: "https://www.youtube.com/watch?v=kRWw8gU5u2s", image: "ecnhq.jpg" },
+    { title: "Lạc Trôi", artist: "Sơn Tùng M-TP", genre: "V-Pop", time: "04:00", file: "lactroi.mp3", youtube: "https://www.youtube.com/watch?v=Llw9Q66wk7s", image: "lactroi.jpg" },
+    { title: "Mặt Trời Của Em", artist: "Phương Ly", genre: "V-Pop", time: "03:20", file: "mtce.mp3", youtube: "https://www.youtube.com/watch?v=cM-1aY_f4yY", image: "mtce.jpg" },
+    { title: "Hoa Nở Không Màu", artist: "Hoài Lâm", genre: "Ballad", time: "05:12", file: "hnkm.mp3", youtube: "https://www.youtube.com/watch?v=y_6aSG2yfe8", image: "hnkm.jpg" },
+
+    // 3. THÊM MỚI: BALLAD
+    { title: "Tháng Tư Là Lời Nói Dối", artist: "Hà Anh Tuấn", genre: "Ballad", time: "05:15", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Thang+Tu+La+Loi+Noi+Doi+Cua+Em", image: "default.jpg" },
+    { title: "Nàng Thơ", artist: "Hoàng Dũng", genre: "Ballad", time: "04:20", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Nang+Tho+Hoang+Dung", image: "default.jpg" },
+    { title: "Hơn Cả Yêu", artist: "Đức Phúc", genre: "Ballad", time: "04:45", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Hon+Ca+Yeu+Duc+Phuc", image: "default.jpg" },
+    { title: "Chạm Đáy Nỗi Đau", artist: "Erik", genre: "Ballad", time: "05:00", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Cham+Day+Noi+Dau+Erik", image: "default.jpg" },
+    { title: "Em Gái Mưa", artist: "Hương Tràm", genre: "Ballad", time: "04:30", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Em+Gai+Mua+Huong+Tram", image: "default.jpg" },
+
+    // 4. THÊM MỚI: ROCK
+    { title: "Numb", artist: "Linkin Park", genre: "Rock", time: "03:07", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=kXYiU_JCYtU", image: "default.jpg" },
+    { title: "It's My Life", artist: "Bon Jovi", genre: "Rock", time: "03:44", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=vx2u5uUu3DE", image: "default.jpg" },
+    { title: "Bring Me To Life", artist: "Evanescence", genre: "Rock", time: "03:57", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=3YxaaGgTQYM", image: "default.jpg" },
+    { title: "Đường Đến Ngày Vinh Quang", artist: "Bức Tường", genre: "Rock", time: "04:30", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Duong+Den+Ngay+Vinh+Quang", image: "default.jpg" },
+    { title: "Smells Like Teen Spirit", artist: "Nirvana", genre: "Rock", time: "05:01", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=hTWKbfoikeg", image: "default.jpg" },
+
+    // 5. THÊM MỚI: RAP/HIP-HOP
+    { title: "Bigcityboi", artist: "Binz", genre: "Rap/Hip-hop", time: "03:50", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Bigcityboi+Binz", image: "default.jpg" },
+    { title: "Mang Tiền Về Cho Mẹ", artist: "Đen Vâu", genre: "Rap/Hip-hop", time: "04:20", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Mang+Tien+Ve+Cho+Me", image: "default.jpg" },
+    { title: "Godzilla", artist: "Eminem", genre: "Rap/Hip-hop", time: "03:30", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=r_0JjYUe5jo", image: "default.jpg" },
+    { title: "Người Ấy Là Ai", artist: "16 Typh", genre: "Rap/Hip-hop", time: "03:10", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Nguoi+Ay+La+Ai+16Typh", image: "default.jpg" },
+    { title: "Thủ Đô Cypher", artist: "Low G, MCK...", genre: "Rap/Hip-hop", time: "04:00", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Thu+Do+Cypher", image: "default.jpg" },
+
+    // 6. THÊM MỚI: R&B
+    { title: "Blinding Lights", artist: "The Weeknd", genre: "R&B", time: "03:20", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=4NRXx6U8ABQ", image: "default.jpg" },
+    { title: "Kill Bill", artist: "SZA", genre: "R&B", time: "02:33", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=MwpMEbgC7DA", image: "default.jpg" },
+    { title: "Peaches", artist: "Justin Bieber", genre: "R&B", time: "03:18", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=tQ0yjYUFKAE", image: "default.jpg" },
+    { title: "Talk", artist: "Khalid", genre: "R&B", time: "03:17", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=hE2Ira-Cwxo", image: "default.jpg" },
+    { title: "Say So", artist: "Doja Cat", genre: "R&B", time: "03:57", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=pok8H_KF1FA", image: "default.jpg" },
+
+    // 7. THÊM MỚI: EDM
+    { title: "Faded", artist: "Alan Walker", genre: "EDM", time: "03:32", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=60ItHLz5WEA", image: "default.jpg" },
+    { title: "Wake Me Up", artist: "Avicii", genre: "EDM", time: "04:07", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=IcrbM1l_BoI", image: "default.jpg" },
+    { title: "Alone", artist: "Marshmello", genre: "EDM", time: "03:19", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=ALZHF5UqnU4", image: "default.jpg" },
+    { title: "The Nights", artist: "Avicii", genre: "EDM", time: "02:56", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=UtF6Jej8yb4", image: "default.jpg" },
+    { title: "Titanium", artist: "David Guetta", genre: "EDM", time: "04:05", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=JRfuAukYTKg", image: "default.jpg" },
+
+    // 8. THÊM MỚI: INDIE
+    { title: "Một Đêm Say", artist: "Thịnh Suy", genre: "Indie", time: "03:40", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Mot+Dem+Say+Thinh+Suy", image: "default.jpg" },
+    { title: "Lạ Lùng", artist: "Vũ", genre: "Indie", time: "04:20", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=La+Lung+Vu", image: "default.jpg" },
+    { title: "Mascara", artist: "Chillies", genre: "Indie", time: "04:10", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Mascara+Chillies", image: "default.jpg" },
+    { title: "Bài Này Chill Phết", artist: "Đen ft. Min", genre: "Indie", time: "04:15", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Bai+Nay+Chill+Phet", image: "default.jpg" },
+    { title: "Va Vào Giai Điệu Này", artist: "MCK", genre: "Indie", time: "03:00", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Va+Vao+Giai+Dieu+Nay", image: "default.jpg" },
+
+    // 9. THÊM MỚI: LO-FI
+    { title: "Old Songs", artist: "Lofi Chill", genre: "Lo-fi", time: "03:00", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=lofi+chill", image: "default.jpg" },
+    { title: "Rainy Day", artist: "Lofi Girl", genre: "Lo-fi", time: "02:45", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=rainy+day+lofi", image: "default.jpg" },
+    { title: "Study Music", artist: "ChilledCow", genre: "Lo-fi", time: "04:00", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=study+music+lofi", image: "default.jpg" },
+    { title: "Midnight", artist: "Lofi Beats", genre: "Lo-fi", time: "03:10", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=midnight+lofi", image: "default.jpg" },
+    { title: "Coffee Shop", artist: "Relax", genre: "Lo-fi", time: "03:30", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=coffee+shop+lofi", image: "default.jpg" },
+
+    // 10. THÊM MỚI: JAZZ
+    { title: "Fly Me To The Moon", artist: "Frank Sinatra", genre: "Jazz", time: "02:30", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=ZEcqHA7dbwM", image: "default.jpg" },
+    { title: "What A Wonderful World", artist: "Louis Armstrong", genre: "Jazz", time: "02:21", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=CWzrABouyeE", image: "default.jpg" },
+    { title: "Take Five", artist: "Dave Brubeck", genre: "Jazz", time: "05:24", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=vmDDOFXSgAs", image: "default.jpg" },
+    { title: "Summertime", artist: "Ella Fitzgerald", genre: "Jazz", time: "04:58", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=u2bigf337aU", image: "default.jpg" },
+    { title: "Feeling Good", artist: "Nina Simone", genre: "Jazz", time: "02:54", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=D5Y11hwjMNs", image: "default.jpg" },
+
+    // 11. THÊM MỚI: BOLERO
+    { title: "Duyên Phận", artist: "Như Quỳnh", genre: "Bolero", time: "05:46", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Duyen+Phan+Nhu+Quynh", image: "default.jpg" },
+    { title: "Vùng Lá Me Bay", artist: "Như Quỳnh", genre: "Bolero", time: "05:20", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Vung+La+Me+Bay", image: "default.jpg" },
+    { title: "Sầu Tím Thiệp Hồng", artist: "Quang Lê - Lệ Quyên", genre: "Bolero", time: "04:45", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Sau+Tim+Thiep+Hong", image: "default.jpg" },
+    { title: "Con Đường Xưa Em Đi", artist: "Trung Quang", genre: "Bolero", time: "04:30", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Con+Duong+Xua+Em+Di", image: "default.jpg" },
+    { title: "Chuyện Giàn Thiên Lý", artist: "Mạnh Quỳnh", genre: "Bolero", time: "05:00", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Chuyen+Gian+Thien+Ly", image: "default.jpg" },
+
+    // 12. THÊM MỚI: ACOUSTIC
+    { title: "Perfect (Acoustic)", artist: "Ed Sheeran", genre: "Acoustic", time: "04:20", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Perfect+Acoustic", image: "default.jpg" },
+    { title: "Boyce Avenue Cover", artist: "Boyce Avenue", genre: "Acoustic", time: "03:40", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Boyce+Avenue", image: "default.jpg" },
+    { title: "Attention (Acoustic)", artist: "Charlie Puth", genre: "Acoustic", time: "03:30", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Attention+Acoustic", image: "default.jpg" },
+    { title: "Faded (Piano)", artist: "Alan Walker", genre: "Acoustic", time: "03:00", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Faded+Piano", image: "default.jpg" },
+    { title: "Love Yourself", artist: "Justin Bieber", genre: "Acoustic", time: "03:50", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Love+Yourself+Acoustic", image: "default.jpg" },
+
+    // 13. THÊM MỚI: REMIX
+    { title: "Cắt Đôi Nỗi Sầu (Remix)", artist: "Tăng Duy Tân", genre: "Remix", time: "03:30", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Cat+Doi+Noi+Sau+Remix", image: "default.jpg" },
+    { title: "Bên Trên Tầng Lầu (Remix)", artist: "Tăng Duy Tân", genre: "Remix", time: "03:00", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Ben+Tren+Tang+Lau+Remix", image: "default.jpg" },
+    { title: "See Tình (Remix)", artist: "Hoàng Thùy Linh", genre: "Remix", time: "03:10", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=See+Tinh+Remix", image: "default.jpg" },
+    { title: "Waiting For You (Remix)", artist: "Mono", genre: "Remix", time: "03:40", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Waiting+For+You+Remix", image: "default.jpg" },
+    { title: "2 Phút Hơn (KAIZ Remix)", artist: "Pháo", genre: "Remix", time: "03:05", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=2+Phut+Hon+Remix", image: "default.jpg" },
+
+    // 14. THÊM MỚI: LATIN
+    { title: "Despacito", artist: "Luis Fonsi", genre: "Latin", time: "03:48", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=kJQP7kiw5Fk", image: "default.jpg" },
+    { title: "Havana", artist: "Camila Cabello", genre: "Latin", time: "03:37", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=HCjNJDNzw8Y", image: "default.jpg" },
+    { title: "Senorita", artist: "Shawn Mendes", genre: "Latin", time: "03:11", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=Pkh8UtuejGw", image: "default.jpg" },
+    { title: "Bailando", artist: "Enrique Iglesias", genre: "Latin", time: "04:03", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=NUsoVlDFqZg", image: "default.jpg" },
+    { title: "Taki Taki", artist: "DJ Snake", genre: "Latin", time: "03:32", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=ixkoVwKQaJg", image: "default.jpg" },
+
+    // 15. THÊM MỚI: NHẠC PHIM
+    { title: "My Heart Will Go On", artist: "Celine Dion", genre: "Nhạc phim", time: "04:40", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=FHG2oizTlpY", image: "default.jpg" },
+    { title: "Let It Go", artist: "Frozen OST", genre: "Nhạc phim", time: "03:44", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=L0MK7qz13bU", image: "default.jpg" },
+    { title: "See You Again", artist: "Wiz Khalifa", genre: "Nhạc phim", time: "03:50", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=RgKAFK5djSk", image: "default.jpg" },
+    { title: "A Thousand Years", artist: "Christina Perri", genre: "Nhạc phim", time: "04:45", file: "dummy.mp3", youtube: "https://www.youtube.com/watch?v=rtOvBOTyX00", image: "default.jpg" },
+    { title: "Có Chàng Trai Viết Lên Cây", artist: "Phan Mạnh Quỳnh", genre: "Nhạc phim", time: "05:00", file: "dummy.mp3", youtube: "https://www.youtube.com/results?search_query=Co+Chang+Trai+Viet+Len+Cay", image: "default.jpg" }
 ];
+
+// --- QUAN TRỌNG: TỰ ĐỘNG GÁN THỂ LOẠI CHO NHẠC CŨ (ĐỂ HIỆN TRONG TAB THỂ LOẠI) ---
+// Đoạn này giúp bạn không cần sửa code cũ mà vẫn lọc được nhạc
+chartData['vn'].forEach(s => s.genre = "V-Pop");
+chartData['us'].forEach(s => s.genre = "US-UK");
+chartData['kp'].forEach(s => s.genre = "K-Pop");
 
 const genres = [
     { name: "V-Pop", icon: "🇻🇳" }, { name: "K-Pop", icon: "🇰🇷" }, { name: "US-UK", icon: "🇺🇸" },
@@ -67,7 +169,7 @@ function switchPage(pageId) {
     if(pageId === 'download') renderDownloadPage();
 }
 
-// ==============================================
+
 // ==============================================
 // PHẦN 3: TRÌNH PHÁT NHẠC (ĐÃ SỬA: NEXT, PREV, AUTO-PLAY)
 // ==============================================
@@ -316,7 +418,7 @@ document.querySelectorAll('.search-box input').forEach(inp => {
 });
 
 // ==============================================
-// PHẦN 6: MODAL & ĐĂNG NHẬP (ĐÃ NÂNG CẤP)
+// PHẦN 6: MODAL & ĐĂNG NHẬP
 // ==============================================
 const modal = document.getElementById("myModal");
 const regModal = document.getElementById("registerModal");
@@ -645,7 +747,7 @@ if (openFeedbackBtn && feedbackModal) {
             };
 
             // GỬI EMAIL TỰ ĐỘNG QUA EMAILJS
-            // Bạn nhớ thay SERVICE_ID và TEMPLATE_ID của bạn vào 2 chỗ dưới đây
+            // SERVICE_ID và TEMPLATE_ID
             emailjs.send('service_8zeprae', 'template_depyofl', templateParams)
                 .then(function() {
                     alert('Gửi góp ý thành công! Cảm ơn bạn.');
@@ -698,3 +800,64 @@ function renderDownloadPage() {
     });
 }
 
+// --- LOGIC HIỂN THỊ THỂ LOẠI (MỚI) ---
+
+function renderGenres() {
+    const grid = document.getElementById('genreGrid');
+    if(!grid) return;
+    
+    // Reset lại nội dung grid về mặc định (dạng lưới icon)
+    grid.style.display = "grid"; 
+    grid.style.gridTemplateColumns = "repeat(auto-fill, minmax(150px, 1fr))";
+    grid.innerHTML = "";
+
+    genres.forEach(g => {
+        // Chú ý: onclick gọi hàm showGenreSongs
+        grid.innerHTML += `
+            <div class="genre-card" onclick="showGenreSongs('${g.name}')">
+                <div class="genre-icon">${g.icon}</div>
+                <div class="genre-name">${g.name}</div>
+            </div>`;
+    });
+}
+
+function showGenreSongs(genreName) {
+    const grid = document.getElementById('genreGrid');
+    
+    // Lọc các bài hát thuộc thể loại này
+    const songs = allSongs.filter(s => s.genre === genreName);
+    
+    // Đổi grid sang dạng list (1 cột)
+    grid.style.display = "block";
+    
+    // Tạo nội dung danh sách
+    let html = `
+        <button class="btn-back" onclick="renderGenres()">⬅ Quay lại danh sách Thể loại</button>
+        <h2 style="color: #eebbc3; margin-bottom: 20px;">Danh sách nhạc: ${genreName}</h2>
+    `;
+
+    if (songs.length === 0) {
+        html += `<p>Chưa có bài hát nào cho thể loại này.</p>`;
+    } else {
+        songs.forEach(song => {
+            html += `
+            <div class="song-item">
+                <div class="song-info">
+                    <h3>${song.title}</h3>
+                    <p>${song.artist}</p>
+                </div>
+                <div class="song-actions" style="display:flex; align-items:center;">
+                    <div class="song-time" style="margin-right: 15px;">${song.time}</div>
+                    
+                    <button class="btn-play" onclick="playMusic('${song.file}', this)">▶</button>
+                    
+                    <a href="${song.youtube}" target="_blank" class="btn-youtube">
+                        📺 Youtube
+                    </a>
+                </div>
+            </div>`;
+        });
+    }
+
+    grid.innerHTML = html;
+}
