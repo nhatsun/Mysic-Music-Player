@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mysic - Web Nghe Nhạc</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<head>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("8n78HsCiSe0uL0B6q"); 
+        })();
+    </script>
+</head>
+<body>
+    <div class="transition-overlay"></div>
+
+    <header>
+        <div class="logo">Mysic</div>
+        <nav>
+            <a onclick="switchPage('home')" class="nav-link active" id="nav-home">Trang chủ</a>
+            <a onclick="switchPage('genres')" class="nav-link" id="nav-genres">Thể loại</a>
+            <a onclick="switchPage('leaderboard')" class="nav-link" id="nav-leaderboard">Bảng xếp hạng</a>
+            <a onclick="switchPage('download')" class="nav-link" id="nav-download">Tải nhạc</a>
+            <a onclick="switchPage('about')" class="nav-link" id="nav-about">Giới thiệu</a>
+        </nav>
+        <div class="auth-action">
+            <a href="#" class="btn-login" id="loginBtn">Đăng nhập</a>
+        </div>
+    </header>
+
+    <section id="page-home" class="page-section active" style="flex-direction: column; align-items: center;">
+        <div class="hero-container" style="text-align: center; margin-top: 50px;">
+            <img src="images/hero-gif.gif" alt="Dancing Mascot" class="hero-gif">
+            <h1 class="headline">Cảm nhận giai điệu cùng Mysic</h1>
+            
+            <div class="search-box">
+                <input type="text" id="homeSearchInput" placeholder="Tìm bài hát, nghệ sĩ...">
+                <button onclick="handleSearch('homeSearchInput')">Tìm kiếm</button>
+            </div>
+
+            <div class="quick-list-container">
+                <button id="toggleListBtn" class="btn-toggle-list">Xem tất cả bài hát ▼</button>
+                <div id="quickSongList" class="quick-list"></div>
+            </div>
+            
+
+                <button id="createPlaylistBtn" class="btn-create-list" style="margin-top: 15px;">
+                    ✚ Tạo Playlist mới
+                </button>
+
+                <div id="userPlaylistsContainer" class="user-playlists-area">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-genres" class="page-section" style="flex-direction: column; align-items: center;">
+        <div class="container" style="text-align: center; padding-top: 40px;">
+            <h1 class="headline">Khám Phá Thể Loại</h1>
+            <p class="sub-headline">Tìm kiếm giai điệu phù hợp với tâm trạng</p>
+            <div class="genre-grid" id="genreGrid"></div>
+        </div>
+    </section>
+
+    <section id="page-leaderboard" class="page-section" style="flex-direction: column; align-items: center;">
+        <div class="container" style="padding-top: 40px;">
+            <h1 class="headline" style="text-align: center;">Bảng Xếp Hạng Thịnh Hành</h1>
+            <div class="chart-tabs">
+                <button class="tab-btn active" data-type="vn">Việt Nam</button>
+                <button class="tab-btn" data-type="us">US-UK</button>
+                <button class="tab-btn" data-type="kp">K-Pop</button>
+            </div>
+            <div class="chart-list" id="chartList"></div>
+        </div>
+    </section>
+
+    <section id="page-search" class="page-section" style="flex-direction: column; align-items: center;">
+        <div class="container" style="padding-top: 40px; text-align: center;">
+            <div class="search-header">
+                <h1 class="headline">Kết quả tìm kiếm</h1>
+                <div class="search-box small-search">
+                    <input type="text" id="pageSearchInput" placeholder="Tìm bài khác...">
+                    <button onclick="handleSearch('pageSearchInput')">Tìm</button>
+                </div>
+            </div>
+            <p id="searchResultText" style="color: #b8c1ec; margin-bottom: 20px;">Vui lòng nhập từ khóa...</p>
+            <div class="chart-list" id="searchResults"></div>
+        </div>
+    </section>
+<section id="page-download" class="page-section" style="flex-direction: column; align-items: center;">
+        <div class="container" style="padding-top: 40px; text-align: center;">
+            <h1 class="headline">Kho Nhạc Chất Lượng Cao</h1>
+            <p style="color: #b8c1ec; margin-bottom: 15px;">Tải về miễn phí các bài hát yêu thích của bạn</p>
+            
+            <div style="border: 1px dashed #eebbc3; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-bottom: 30px; background: rgba(238, 187, 195, 0.1);">
+                <p style="color: #eebbc3; margin: 0; font-size: 0.9rem; font-weight: bold;">
+                    ⚠️ Lưu ý: Các bài hát này đều có bản quyền. Vui lòng chỉ nghe cá nhân, không Re-up!
+                </p>
+            </div>
+            
+            <div class="download-grid" id="downloadGrid"></div>
+        </div>
+    </section>
+
+<section id="page-about" class="page-section" style="flex-direction: column; align-items: center;">
+        <div class="container" style="text-align: center; margin-top: 50px;">
+            <h1 class="headline">Về Dự Án Mysic</h1>
+            <p style="color: #b8c1ec; max-width: 600px; margin: 0 auto 20px;">
+                Mysic là dự án website nghe nhạc trực tuyến được phát triển với niềm đam mê âm nhạc và công nghệ. 
+                Chúng tôi mong muốn mang lại trải nghiệm nghe nhạc mượt mà và cảm xúc nhất.
+            </p>
+
+            <div class="about-banner" style="margin-bottom: 40px;">
+                <img src="images/200.gif" alt="Mysic Team" 
+                     style="width: 100%; max-width: 600px; height: 300px; object-fit: cover; 
+                            border-radius: 20px; border: 3px solid #eebbc3; 
+                            box-shadow: 0 0 25px rgba(238, 187, 195, 0.3);">
+            </div>
+
+            <div class="team-grid" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
+                
+                <div class="member-card" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; width: 220px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">👑</div>
+                    <h3 style="color: #fffffe; font-size: 1.1rem;">Võ Hoàng Minh Nhật (L)</h3>
+                    <p style="color: #eebbc3; font-size: 0.9rem;">Trưởng nhóm / Coder</p>
+                </div>
+
+                <div class="member-card" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; width: 220px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎨</div>
+                    <h3 style="color: #fffffe; font-size: 1.1rem;">Nguyễn Hoàng Thiên Du</h3>
+                    <p style="color: #eebbc3; font-size: 0.9rem;">Designer</p>
+                </div>
+
+                <div class="member-card" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; width: 220px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">📝</div>
+                    <h3 style="color: #fffffe; font-size: 1.1rem;">Lê Đỗ Minh Khang</h3>
+                    <p style="color: #eebbc3; font-size: 0.9rem;">Content Creator</p>
+                </div>
+
+                <div class="member-card" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; width: 220px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🔍</div>
+                    <h3 style="color: #fffffe; font-size: 1.1rem;">Dương Nguyễn Khánh</h3>
+                    <p style="color: #eebbc3; font-size: 0.9rem;">Tester</p>
+                </div>
+
+                <div class="member-card" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; width: 220px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">💡</div>
+                    <h3 style="color: #fffffe; font-size: 1.1rem;">Trần Ngọc Bảo Tâm</h3>
+                    <p style="color: #eebbc3; font-size: 0.9rem;">Supporter</p>
+                </div>
+            </div>
+
+            <div class="feedback-area" style="margin-top: 60px; padding-bottom: 150px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;">
+                <h3 style="color: #b8c1ec; margin-bottom: 15px;">Bạn có ý kiến đóng góp?</h3>
+                <button id="openFeedbackBtn" style="border: 2px solid #eebbc3; color: #eebbc3; background: transparent; padding: 12px 30px; border-radius: 30px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: 0.3s;">
+                    📩 Gửi góp ý cho chúng tôi
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="music-player-bar" id="musicPlayerBar">
+        <div class="player-info">
+            <img src="images/hero-gif.gif" alt="Cover" class="player-thumb" id="playerThumb">
+            <div class="player-text">
+                <h4 id="playerTitle">Chọn bài hát...</h4>
+                <p id="playerArtist">Mysic</p>
+            </div>
+        </div>
+<div class="player-center">
+            <div class="player-controls">
+                <button class="ctrl-btn" id="prevBtn">⏮</button>
+                <button class="ctrl-btn play-main" id="mainPlayBtn">▶</button>
+                <button class="ctrl-btn" id="nextBtn">⏭</button>
+                
+                <a href="#" target="_blank" id="youtubeBtn" class="ctrl-btn youtube-icon" title="Xem MV trên Youtube">
+                    📺
+                </a>
+            </div>
+            <div class="progress-area">
+                <span id="currentTime">0:00</span>
+                <input type="range" id="progressBar" value="0" min="0" max="100">
+                <span id="duration">0:00</span>
+            </div>
+        </div>
+        <div class="player-volume">
+            <span class="vol-icon">🔊</span>
+            <input type="range" id="volumeBar" value="100" min="0" max="100">
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Đăng Nhập</h2>
+            <form id="loginForm">
+                <div class="input-group"><label>Username</label><input type="text" id="login-username" required></div>
+                <div class="input-group"><label>Password</label><input type="password" id="login-pass" required></div>
+                <button type="submit" class="btn-submit">Đăng nhập</button>
+            </form>
+            <div class="modal-footer"><p>Chưa có tài khoản? <a href="#" id="showRegisterLink">Đăng ký ngay</a></p></div>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close register-close">&times;</span>
+            <h2>Đăng Ký</h2>
+            <form id="registerForm">
+                <div class="input-group"><label>Email</label><input type="email" id="reg-email" required></div>
+                <div class="input-group"><label>Username</label><input type="text" id="reg-username" required></div>
+                <div class="input-group"><label>Password</label><input type="password" id="reg-pass" required></div>
+                <div class="input-group"><label>Confirm</label><input type="password" id="reg-repass" required></div>
+                <button type="submit" class="btn-submit">Đăng Ký</button>
+            </form>
+            <div class="modal-footer"><p>Đã có tài khoản? <a href="#" id="showLoginLink">Đăng nhập</a></p></div>
+        </div>
+    </div>
+
+    <div id="playlistModal" class="modal">
+        <div class="modal-content" style="width: 500px;">
+            <span class="close playlist-close">&times;</span>
+            <h2>Tạo Playlist Mới</h2>
+            
+            <div class="input-group">
+                <label>Tên Playlist</label>
+                <input type="text" id="playlistNameInput" placeholder="Ví dụ: Nhạc Chill, Nhạc Buồn..." required>
+            </div>
+
+            <div class="input-group">
+                <label>Chọn bài hát:</label>
+                <div id="songSelectionList" class="song-selection-box">
+                    </div>
+            </div>
+
+            <div class="playlist-summary" style="margin-top: 20px; padding-top: 10px; border-top: 1px solid #b8c1ec; display: flex; justify-content: space-between; align-items: center;">
+                <p style="margin: 0; color: #b8c1ec;">Số bài: <b id="totalSongsCount" style="color: #fffffe;">0</b></p>
+                <p style="margin: 0; color: #b8c1ec;">Tổng thời gian: <b id="totalDurationCount" style="color: #eebbc3; font-size: 1.2rem;">00:00</b></p>
+            </div>
+
+            <button id="savePlaylistBtn" class="btn-submit" style="margin-top: 20px;">Hoàn tất & Tạo</button>
+        </div>
+    </div>
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <span class="close feedback-close">&times;</span>
+            <h2>Gửi Góp Ý</h2>
+            <p>Chúng tôi luôn lắng nghe ý kiến của bạn!</p>
+            
+            <form id="feedbackForm">
+                <div class="input-group">
+                    <label>Tên của bạn</label>
+                    <input type="text" id="fbName" placeholder="Nhập tên..." required>
+                </div>
+                
+                <div class="input-group">
+                    <label>Email của bạn</label>
+                    <input type="email" id="fbEmail" placeholder="Nhập email..." required>
+                </div>
+
+                <div class="input-group">
+                    <label>Nội dung góp ý</label>
+                    <textarea id="fbContent" rows="4" placeholder="Bạn muốn nhắn nhủ điều gì..." required style="width: 100%; padding: 10px; border-radius: 5px; outline: none; border: 1px solid #b8c1ec; background: #fffffe; font-family: inherit;"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Gửi Email 🚀</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
